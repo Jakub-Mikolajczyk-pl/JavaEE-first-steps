@@ -6,7 +6,8 @@ import java.util.Date;
 @Entity
 public class Book {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
 
     @Column(length = 200)
@@ -18,6 +19,7 @@ public class Book {
     @Column(name = "unit_cost")
     private Float unitCost;
 
+    @Column(length = 50)
     private String isbn;
 
     @Column(name = "publication_date")
@@ -28,9 +30,24 @@ public class Book {
     private Integer nbOfPages;
 
     @Column(name = "image_url")
-    private String imageUrl;
+    private String imageURL;
 
+    @Enumerated
     private Language language;
+
+    public Book() {
+    }
+
+    public Book(String isbn, String title, float unitCost, int nbOfPages, Language language, Date publicationDate, String imageURL, String description) {
+        this.isbn = isbn;
+        this.title = title;
+        this.unitCost = unitCost;
+        this.nbOfPages = nbOfPages;
+        this.language = language;
+        this.publicationDate = publicationDate;
+        this.imageURL = imageURL;
+        this.description = description;
+    }
 
     public Long getId() {
         return id;
@@ -89,11 +106,11 @@ public class Book {
     }
 
     public String getImageUrl() {
-        return imageUrl;
+        return imageURL;
     }
 
     public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+        this.imageURL = imageUrl;
     }
 
     public Language getLanguage() {
@@ -114,7 +131,7 @@ public class Book {
                 ", isbn='" + isbn + '\'' +
                 ", publicationDate=" + publicationDate +
                 ", nbOfPages=" + nbOfPages +
-                ", imageUrl='" + imageUrl + '\'' +
+                ", imageUrl='" + imageURL + '\'' +
                 ", language=" + language +
                 '}';
     }
